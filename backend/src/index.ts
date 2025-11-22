@@ -9,7 +9,10 @@ dotenv.config()
 const prisma = new PrismaClient()
 const fastify = Fastify({ logger: true })
 
-fastify.register(cors)
+fastify.register(cors, { 
+  origin: 'https://mi-imprenta-front.onrender.com',
+  credentials: true 
+})
 
 /* ---------- rutas ---------- */
 fastify.get('/ping', async (_, reply) => ({ msg: 'pong' }))
