@@ -1,13 +1,15 @@
 import axios, { AxiosError } from 'axios'
 
-const api = axios.create({ baseURL: '/api' })
+const baseURL = 'https://mi-imprenta-ot.onrender.com'
+
+const api = axios.create({ baseURL })
 
 /* ----- OTs ----- */
 export const listarOTs = (estado?: string) =>
-  api.get('/ot', { params: estado ? { estado } : {} }).then(r => r.data)
+  axios.get('/api/ot', { params: estado ? { estado } : {} }).then(r => r.data)
 
 export const crearOT = (data: any) =>
-  api.post('/ot', data)
+  axios.post('/api/ot', data)
      .then(r => r.data)
      .catch((_: AxiosError) => {
        throw new Error('OFFLINE')
@@ -15,6 +17,6 @@ export const crearOT = (data: any) =>
 
 /* ----- Clientes ----- */
 export const listarClientes = () =>
-  api.get('/clientes')
+  axios.get('/api/clientes')
      .then(r => r.data)
      .catch(() => [])
