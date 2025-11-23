@@ -6,10 +6,10 @@ const api = axios.create({ baseURL })
 
 /* ----- OTs ----- */
 export const listarOTs = (estado?: string) =>
-  api.get('/api/ot', { params: estado ? { estado } : {} }).then(r => r.data)
+  api.get('/ot', { params: estado ? { estado } : {} }).then(r => r.data)
 
 export const crearOT = (data: any) =>
-  api.post('/api/ot', data)
+  api.post('/ot', data)
      .then(r => r.data)
      .catch((_: AxiosError) => {
        throw new Error('OFFLINE')
@@ -17,6 +17,6 @@ export const crearOT = (data: any) =>
 
 /* ----- Clientes ----- */
 export const listarClientes = () =>
-  api.get('/api/clientes')
+  api.get('/clientes')
      .then(r => r.data)
      .catch(() => [])
